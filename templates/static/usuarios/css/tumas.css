@@ -1,0 +1,66 @@
+.turma-cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 24px;
+    margin: 40px 0 40px 0;
+}
+.turma-card{
+    background-color: #082a3a;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.turma-card:hover{
+    background-color: #0A374C;
+}
+h2{
+    font-size: 60pt;
+    color: #1e59da;
+}
+h3{
+    font-size: 14pt;
+    margin-bottom: 10px;
+}
+.periodo, .serie{
+    background-color: #81808022;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(207, 207, 207);
+}
+.head{
+    position: absolute;
+    padding: 15px;
+    border: 1px solid #0A374C;
+    border-radius: 7px 7px;
+}
+.head span{
+    background-color: #156488;
+    padding: 10px;
+    margin: 0 7px 0 7px;
+    transition: background-color 0.3s;
+}
+.head span:hover{
+    background-color: #1988bb;
+    border-bottom: 2px solid #1e59da;
+    cursor: pointer;
+}
+.btn-cadastrar {
+    background-color: #0095f6;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.btn-cadastrar:hover {
+    background-color: #0186df;
+}
+.lista-turma, .desempenho-turma, .nome, .snome{
+    display: none;
+}
+.distanciamento{
+    width: 500px;
+}

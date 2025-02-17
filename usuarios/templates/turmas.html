@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load permission_tags %}
+{% load static %}
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/tumas.css' %}">
+{% endblock %}
+
+{% block 'dashboard_professor' %}
+    
+    <div class="container">
+        <h1>Suas turmas</h1>
+        <p>São turmas naqual você lecionas</p>
+        <div class="container-fluid">
+            <div class="turma-cards">
+                {% for turma in turmas %}
+                    <a href="{% url 'turma' turma.id %}" style="text-decoration: none; color: white;">
+                        <div class="turma-card">
+                            <h2>{{turma.nome}}</h2>
+                            <h3>{{turma.curso}}</h3>
+                            <span class="periodo">{{turma.periodo}}</span>
+                            <span class="serie">{{turma.serie}}</span>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

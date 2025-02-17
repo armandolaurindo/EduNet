@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% load permission_tags %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/tumas.css' %}">
+{% endblock %}
+
+{% block 'dashboard_professor' %}
+    <div class="container">
+        <div>
+            <h1 style="text-align: center; color:#ffffff; font-size: 24pt;">{{turma.nome}}. {{turma.curso}}. {{turma.serie}}. {{turma.periodo}}</h1>
+            <div class="head">
+                <span class="btn-span" onclick="exibirForm('1')">CADASTRAR ALUNO</span>
+                <span class="btn-span" onclick="exibirForm('2')">VER LISTA</span>
+                <span class="btn-span" onclick="exibirForm('3')">DESEMPENHO DA TURMA</span>
+            </div>
+        </div>
+        <br>
+        <br>
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+        <br>
+        <div id="Cadastrar-aluno" class="cadastrar-aluno">
+            <br>
+            <form action="{% url 'cadastrar_aluno' turma.id %}" method="POST">{% csrf_token %}
+                <div class="row">
+                    <p>Nome</p>
+                    <input type="text" required class="form-control" placeholder="Ex:. Joe" name="nome">
+                    <p>Sobrenome</p>
+                    <input type="text" required class="form-control" placeholder="Ex:. Doe" name="sobrenome">
+                    <p>Número de matrícula</p>
+                    <input type="text" required class="form-control" placeholder="Ex:. 2025" name="num_marticula">
+                    <br>
+                </div>
+                <br>
+                <input class="btn-cadastrar" type="submit" value="Cadastrar">
+            </form>
+            <br>
+            <h3>Alunos</h3>
+            <br>
+            <div class="container-fluid distanciamento">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Matrícula</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Sobrenome</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for aluno in alunos %}
+                            <tr>
+                                <td id="td-matricula">{{aluno.numero_matricula}}</td>
+                                <td id="tb-nome">{{aluno.nome}}
+                                </td>
+                                <td id="tb-sobrenome">{{aluno.sobrenome}}</td>
+                                <th>
+                                    <input id="btn-editar" type="submit" value="Editar" onclick="dados_aluno()" class="btn btn-info btn-cadastrar">
+                                </th>
+                                <th>
+                                    <input type="hidden" value="{{aluno.id}}" id="aluno_edit">
+                                </th>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="ver-lista-da-turma" class="lista-turma">
+            <br>
+            <h3>Lista dos alunos</h3>
+            <br>
+            <div class="container-fluid distanciamento">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Matrícula</th>
+                            <th scope="col">Nome completo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for aluno in alunos %}
+                            <tr>
+                                <td>{{aluno.numero_matricula}}</td>
+                                <td>{{aluno.nome}} {{aluno.sobrenome}}</td>
+                                <td><a href="#"><span class="btn btn-info btn-cadastrar">Notas</span></a></td>
+                                <td><a href="#"><span class="btn btn-info btn-cadastrar">Desempenho</span></a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="ver-desempenho-da-turma" class="desempenho-turma">
+            <br>
+            <h3>Desempenho da turma</h3>
+        </div>
+    </div>
+
+<script src="{% static 'usuarios/javascript/turmas.js' %}"></script>
+{% endblock %}

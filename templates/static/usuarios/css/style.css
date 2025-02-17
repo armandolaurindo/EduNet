@@ -1,0 +1,113 @@
+* {
+    margin: 0; 
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins" , sans-serif;
+}
+
+body {
+    background-color: #0A1227; /* COR DE FUNDO*/
+    width: 100vw; /* LARGURA */
+    height: 100vh; /* ALTURA */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    color: #EFEFEF;
+}
+
+.insta-logo {
+    margin-bottom: 20px;
+}
+
+.caixa-imagens {
+    position: relative;  /* Como vamos posicionar os elementos */
+} 
+
+.imagem-celular {
+    width: 450px;
+}
+
+.imagem-insta {
+    height: 520px;
+    position: absolute;
+    left: 153px;
+    top: 26px;
+}
+
+.caixa-form form {
+    width: 350px;
+    border: 1px solid #0E283E;
+    padding: 50px 40px 20px 40px;
+    display: flex;
+    flex-direction: column;
+    background-color: #0E283E;
+}
+
+input {
+    height: 36px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #0E283E;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 5px;
+    color: #ffffff;
+    background-color: #0A374C;
+}
+label {
+    display: block;
+}
+.select {
+    height: 36px;
+    margin-top: 5px;
+    border: 1px solid #0A374C;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 5px;
+    color: #ffffff;
+    background-color: #0A374C;
+}
+.btn-entrar {
+    background-color: #0095f6;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    height: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.btn-entrar:hover {
+    background-color: #0186df;
+}
+p {
+    font-size: 12px; /* TAMANHO DA FONTE */
+    font-weight: bold; /* ESPESSURA DA FONTE / BOLD = NEGRITO*/
+    text-align: center; /* ALINHAMENTO DO TEXTO */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.esqueceu-senha {
+    color: #1e59da;
+    text-align: center;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration-line: none;
+}
+
+.form_encarregado select{
+    height: 36px;
+    width: 270px;
+    margin-top: 5px;
+    border: 1px solid #0A374C;
+    border-radius: 5px;
+    outline: none;
+    padding-left: 5px;
+    color: #ffffff;
+    background-color: #0A374C;
+}
+.form_professor input{
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+}

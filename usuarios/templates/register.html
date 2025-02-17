@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html> <!-- ESTAMOS USANDO A VERSÃO ATUALIZADA DO HTML -->
+<html lang="pt-br"> <!-- LINGUA DO SITE -->
+<head>
+    <meta charset="UTF-8"> <!-- PADRÃO DE CARACTERES -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'usuarios/css/style.css' %}">
+    <title>EduNet - Register</title>
+</head>
+
+<body>
+
+    <!-- DIV é UMA CAIXA INVISÍVEL -->
+    <div class="caixa-imagens">
+        <img src="{% static 'usuarios/img/code.png' %}" class="imagem-celular">
+    </div>
+
+
+    <div class="caixa-form">
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+                <div class="alert {{message.tags}}">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+
+        <br>
+        <form action="{% url 'cadastrar' %}" method="POST">{% csrf_token %}
+            <img src="{% static 'usuarios/img/edunet_logo.png' %}" class="insta-logo">
+
+            <input placeholder="Nome" name="first_name">
+            <input placeholder="Sobrenome" name="last_name">
+            <input placeholder="E-mail" name="email">
+            <input placeholder="Senha" type="password" name="senha">
+            <label>Tipo de conta</label>
+            
+            <select name="cargo" id="select1" class="select" onchange="exibir_form()">
+                <option value=""></option>
+                {% for c, cargo_type in typy_cargo_user %}
+                    <option value="{{c}}">{{cargo_type}}</option>
+                {% endfor %}
+            </select>
+            
+            <div id="form_professor" class="form_professor" style="display: none;">
+                <input placeholder="Disciplina" name="disciplina">
+            </div>
+            <div id="form_encarregado" class="form_encarregado" style="display: none;">
+                <select name="relacao_com_aluno" class="select">
+                    <option value="">Qual é a relação com aluno</option>
+                    {% for r, relacao in relacoes %}
+                        <option value="{{r}}">{{relacao}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <input type="submit" value="Criar" class="btn-entrar">
+            <p>já tens uma conta?<a class="esqueceu-senha" href="{% url 'entrar' %}"> Entrar</a></p>
+        </form>
+    </div>
+<script src="{% static 'usuarios/javascript/register.js' %}"></script>
+</body>
+</html>
