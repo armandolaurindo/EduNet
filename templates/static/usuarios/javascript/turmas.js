@@ -1,23 +1,16 @@
 function exibirForm(tipo){
-    add_aluno = document.getElementById('Cadastrar-aluno');
     ver_lista_turma = document.getElementById('ver-lista-da-turma');
     ver_desempenho_turma = document.getElementById('ver-desempenho-da-turma');
 
     if(tipo == "1"){
-        ver_lista_turma.style.display = "none";
-        ver_desempenho_turma.style.display = "none";
-        add_aluno.style.display = "block";
-    }else if(tipo == "2"){
-        add_aluno.style.display = "none";
-        ver_desempenho_turma.style.display = "none";
         ver_lista_turma.style.display = "block";
-    }else if(tipo == "3"){
-        add_aluno.style.display = "none";
-        ver_lista_turma.style.display = "none";
+        ver_desempenho_turma.style.display = "none";
+    }else if(tipo == "2"){
         ver_desempenho_turma.style.display = "block";
+        ver_lista_turma.style.display = "none";
     }
 }
-
+/*
 function dados_aluno(){
 
     btn_editar = document.getElementById('btn-editar')
@@ -101,4 +94,4 @@ function dados_aluno(){
 
     }
     
-}
+}*/

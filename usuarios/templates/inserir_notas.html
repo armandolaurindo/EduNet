@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'head' %}
+    <link rel="stylesheet" href="{% static 'usuarios/css/tumas.css' %}">
+{% endblock %}
+
+
+{% block 'dashboard_professor' %}
+    <br>
+    <h4>Nome: {{aluno.nome}} {{aluno.sobrenome}}</h4>
+    
+    <div class="container-notas">
+
+        <div id="inserirNotas" class="inserirNotas">
+            <h3>Inserir Notas</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Impedit sed eum, fugit adipisci illum voluptates repudiandae sequi, asperiores officia aut velit, ullam libero numquam fugiat deserunt minima totam consequuntur quod!</p>
+        </div>
+
+        <div id="tabelaDeNotas" class="tabelaDeNotas">
+            <h3>Tabela de Notas</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat aspernatur magnam commodi modi provident nemo, debitis cupiditate delectus nulla ad dolorem. Enim aspernatur fugiat optio, inventore voluptas debitis? Enim, labore?</p>
+        </div>
+    </div>
+
+{% endblock %}

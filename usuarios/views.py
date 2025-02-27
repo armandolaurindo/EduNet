@@ -109,8 +109,15 @@ def turma(request, id_turma):
         turma = Turma.objects.get(id=id_turma)
         alunos = Aluno.objects.filter(turma=id_turma)
         return render(request, 'turma.html', {'turma': turma, 'alunos': alunos})
-
     
+    
+@has_role_decorator('professor')
+def inserir_notas(request, id_aluno):
+    if request.method == 'GET':
+        aluno = Aluno.objects.get(id=id_aluno)
+        return render(request, 'inserir_notas.html', {'aluno': aluno})
+    
+'''
 @has_permission_decorator('cadastrar_aluno') 
 def cadastrar_aluno(request, id_t):
     turma = Turma.objects.get(id=id_t)
@@ -169,6 +176,7 @@ def update_aluno(request, id_a):
         return JsonResponse({'status': '200', 'nome': nome, 'sobrenome': sobrenome, 'numero_matricula': numero_matricula})
     except:
         return JsonResponse({'status': '500' })
+'''
 
 
 # para o encarregado
