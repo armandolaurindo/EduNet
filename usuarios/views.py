@@ -116,6 +116,15 @@ def inserir_notas(request, id_aluno):
     if request.method == 'GET':
         aluno = Aluno.objects.get(id=id_aluno)
         return render(request, 'inserir_notas.html', {'aluno': aluno})
+    elif request.method == 'POST':
+        valor_nota = request.POST.get('nota')
+        type_prova = request.POST.get('tipo-prova')
+        semestre = request.POST.get('semestre')
+        
+        print(valor_nota, type_prova, semestre)
+        
+        messages.add_message(request, messages.SUCCESS, 'A nota foi adicionada!')
+        return redirect(reverse('inserir_notas', args=id_aluno))
     
 '''
 @has_permission_decorator('cadastrar_aluno') 

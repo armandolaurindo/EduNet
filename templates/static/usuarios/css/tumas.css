@@ -57,3 +57,32 @@ h3{
     display: flex;
     height: 100vh;
 }
+.tabela-De-Notas{
+    background-color: rgb(245, 245, 245);
+    color: black;
+    padding: 30px;
+
+}
+.tabela-De-Notas{
+    width: 950px;
+}
+.inserir-Notas{
+    width: 350px;
+    color: white;
+    padding: 30px;
+}
+.form-nota input select{
+    display: block;
+}
+.content-add_notas{
+    background-color: #0A374C;
+    padding: 10px;
+    border-radius: 5px;
+}
+.content-table_notas{
+    height: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(173, 173, 173);
+}
