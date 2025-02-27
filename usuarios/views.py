@@ -115,13 +115,32 @@ def turma(request, id_turma):
 def inserir_notas(request, id_aluno):
     if request.method == 'GET':
         aluno = Aluno.objects.get(id=id_aluno)
-        return render(request, 'inserir_notas.html', {'aluno': aluno})
+        t_prova = Nota.TIPO_PROVA_CHOICES
+        semestre = Nota.SEMESTRE_CHOICES
+        #TODO: retornar todas as notas para visualizar na tabela
+        return render(request, 'inserir_notas.html', {'aluno': aluno, 'tipo_prova': t_prova, 'semestres': semestre})
     elif request.method == 'POST':
         valor_nota = request.POST.get('nota')
         type_prova = request.POST.get('tipo-prova')
         semestre = request.POST.get('semestre')
         
-        print(valor_nota, type_prova, semestre)
+        disciplina = request.user.professor.disciplina
+        professor = request.user.professor
+        aluno = Aluno.objects.get(id=id_aluno)
+        turma = aluno.turma
+        print()
+        print(valor_nota, type_prova, semestre, disciplina, professor, turma, aluno)
+        print()
+        nota = Nota(
+            disciplina=disciplina,
+            professor=professor,
+            turma=turma,
+            aluno=aluno,
+            semestre=semestre,
+            tipo_prova=type_prova,
+            nota=valor_nota,
+        )
+        nota.save()
         
         messages.add_message(request, messages.SUCCESS, 'A nota foi adicionada!')
         return redirect(reverse('inserir_notas', args=id_aluno))

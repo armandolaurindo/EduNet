@@ -13,13 +13,23 @@
             <h3>Inserir Notas</h3>
             <div class="content-add_notas">
                 <form action="{% url 'inserir_notas' aluno.id %}" method="POST" class="form-nota">{% csrf_token %}
+
                     <input type="text" required placeholder="Valor da nota" name="nota" class="form-control">
+                    
                     <select name="tipo-prova" id="tipoProva" class="form-select">
-                        <option value="">hjgfjhgvmgvmgvgvhgv</option>
+                        <option value=""></option>
+                        {% for p, prova in tipo_prova %}
+                            <option value="{{p}}">{{prova}}</option>
+                        {% endfor %}
                     </select>
+
                     <select name="semestre" id="tipoProva" class="form-select">
-                        <option value="">hgfjmhv,jhvjvhgnhgc</option>
+                        <option value=""></option>
+                        {% for s, semestre in semestres %}
+                            <option value="{{s}}">{{semestre}}</option>
+                        {% endfor %}
                     </select>
+
                     <br>
                     <input type="submit" value="Adicionar" class="btn btn-success">
                 </form>
