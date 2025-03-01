@@ -103,7 +103,7 @@ class Nota(models.Model):
     data_lancamento = models.DateField(auto_now_add=True, verbose_name="Data de Lançamento")
 
     def __str__(self):
-        return f"Nota: {self.aluno.user.first_name} {self.aluno.user.last_name} - {self.disciplina} - {self.semestre} - {self.tipo_prova}: {self.nota} - {self.data_lancamento.strftime('%d/%m/%Y')}"
+        return f"Nota: {self.aluno.nome} {self.aluno.sobrenome} - {self.disciplina} - {self.semestre} - {self.tipo_prova}: {self.nota} - {self.data_lancamento.strftime('%d/%m/%Y')}"
 
 
 # 👨‍👩‍👦 Tabela para Encarregados

@@ -10,19 +10,24 @@
     <div class="container-notas">
 
         <div id="inserirNotas" class="inserir-Notas">
-            <h3>Inserir Notas</h3>
+            {% if messages %}
+                <br>
+                {% for message in messages %}
+                    <div class="alert {{message.tags}}">{{message}}</div>
+                {% endfor %}
+            {% endif %}
             <div class="content-add_notas">
                 <form action="{% url 'inserir_notas' aluno.id %}" method="POST" class="form-nota">{% csrf_token %}
-
+                    <h1>Nota</h1>
                     <input type="text" required placeholder="Valor da nota" name="nota" class="form-control">
-                    
+                    <br>
                     <select name="tipo-prova" id="tipoProva" class="form-select">
                         <option value=""></option>
                         {% for p, prova in tipo_prova %}
                             <option value="{{p}}">{{prova}}</option>
                         {% endfor %}
                     </select>
-
+                    <br>
                     <select name="semestre" id="tipoProva" class="form-select">
                         <option value=""></option>
                         {% for s, semestre in semestres %}
@@ -31,36 +36,192 @@
                     </select>
 
                     <br>
-                    <input type="submit" value="Adicionar" class="btn btn-success">
+                    <input type="submit" value="Adicionar nota" class="btn btn-success">
                 </form>
             </div>
         </div>
 
         <div id="tabelaDeNotas" class="tabela-De-Notas">
-            <h4>Nome: {{aluno.nome}} {{aluno.sobrenome}}</h4>
-            <h3>Tabela de Notas</h3>
-            {% if messages %}
-                <br>
-                {% for message in messages %}
-                    <div class="alert {{message.tags}}">{{message}}</div>
-                {% endfor %}
-            {% endif %}
+            <h1>Nome: {{aluno.nome}} {{aluno.sobrenome}}</h1>
+            <h3 style="color: rgb(173, 173, 173);">Tabela de Notas</h3>
             <div class="content-table_notas">
-                <table class="table table-dark table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">1º Semestre</th>
-                            <th scope="col">2º Semestre</th>
-                            <th scope="col">3º Semestre</th>
+                <table class="table table-bordered table-responsive">
+                    <thead class="thead-darck">
+                        <tr class="bg-success">
+                            <th style="color: #1e59da; font-size: 15pt;" scope="col">1º Semestre</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <td>A</td>
-                        <td>P.P</td>
-                        <td>E.F</td>
-                        <td>R</td>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '1º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '1º Semestre' %}
+                                <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '1º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '1º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
                     </tbody>
                 </table>
+                  
+                <table class="table table-bordered table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="color: #1e59da; font-size: 15pt;" scope="col">2º Semestre</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '2º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '2º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '2º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '1º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-responsive">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="color: #1e59da; font-size: 15pt;" scope="col">3º Semestre</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '3º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '3º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '3º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                        <tr>
+                            <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
+                            {% for notas in all_notas %}
+                                {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '3º Semestre' %}
+                                    <td>
+                                        {{notas.nota}} 
+                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <input id="idNota" type="hidden" value="{{notas.id}}">
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+                    
             </div>
         </div>
     </div>
