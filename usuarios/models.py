@@ -122,7 +122,7 @@ class Frequencia(models.Model):
     aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, related_name="frequencias")
     professor = models.ForeignKey(Professor, on_delete=models.SET_NULL, null=True, blank=True, related_name="frequencias_registradas")
     turma = models.ForeignKey(Turma, on_delete=models.CASCADE, related_name="frequencias")
-    data = models.DateField(verbose_name="Data da Aula")
+    data = models.DateField(auto_now_add=True, verbose_name="Data da Aula")
     presente = models.BooleanField(default=True, verbose_name="Presente?")
 
     def __str__(self):
