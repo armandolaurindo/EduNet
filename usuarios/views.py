@@ -144,6 +144,28 @@ def inserir_notas(request, id_aluno):
         
         messages.add_message(request, messages.SUCCESS, 'A nota foi adicionada!')
         return redirect(reverse('inserir_notas', args=id_aluno))
+
+@has_role_decorator('professor')
+def atualizar_nota(request):
+    id_nota = request.POST.get('id_nota')
+    nota = Nota.objects.filter(id=id_nota)
+    nota_json = json.loads(serializers.serialize('json', nota))[0]['fields']
+    nota_id = json.loads(serializers.serialize('json', nota))[0]['pk']
+    data = {'nota': nota_json, 'nota_id': nota_id}
+    return JsonResponse(data)
+
+@has_role_decorator('professor')
+def update_nota(request, id_nota):
+    body = json.loads(request.body)
+    valor_nota = body['nota']
+    nota = get_object_or_404(Nota, id=id_nota)
+
+    try:
+        nota.nota = valor_nota
+        nota.save()
+        return JsonResponse({'status': '200', 'nota': valor_nota})
+    except:
+        return JsonResponse({'status': '500' })
     
 '''
 @has_permission_decorator('cadastrar_aluno') 

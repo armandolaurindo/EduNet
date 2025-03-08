@@ -49,7 +49,6 @@
                     <thead class="thead-darck">
                         <tr class="bg-success">
                             <th style="color: #1e59da; font-size: 15pt;" scope="col">1º Semestre</th>
-                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,9 +56,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '1º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -69,9 +73,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '1º Semestre' %}
-                                <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -81,9 +90,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '1º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -93,9 +107,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '1º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -116,9 +135,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '2º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -128,9 +152,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '2º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -140,9 +169,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '2º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -152,9 +186,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '1º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -175,9 +214,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Avaliação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Avaliação' and notas.semestre == '3º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -187,9 +231,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">P.Professor</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Prova do Professor' and notas.semestre == '3º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -199,9 +248,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">E.Final</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Exame Final' and notas.semestre == '3º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -211,9 +265,14 @@
                             <th style="color: rgb(92, 92, 92);" scope="row">Recuperação</th>
                             {% for notas in all_notas %}
                                 {% if notas.tipo_prova == 'Recuperação' and notas.semestre == '3º Semestre' %}
-                                    <td>
+                                    <td id="valorNota">
                                         {{notas.nota}} 
-                                        <button style="background-color: rgb(187, 186, 186); border: none;" class="bx bx-pencil"></button>
+                                        <button 
+                                            style="background-color: rgb(187, 186, 186); border: none;" 
+                                            class="bx bx-pencil open-modal"
+                                            data-modal="modal-1"
+                                            onclick="attNota({{notas.id}})">
+                                        </button>
                                         <input id="idNota" type="hidden" value="{{notas.id}}">
                                     </td>
                                 {% endif %}
@@ -225,5 +284,32 @@
             </div>
         </div>
     </div>
+
+    <dialog id="modal-1">
+
+        <div class="modal-header">
+            <h1 class="modal-title">
+                Atualizar nota
+            </h1>
+
+            <button class="close-modal" data-modal="modal-1">
+                x
+            </button>
+        </div>
+        <div class="modal-body">
+
+            <div class="input-group" id="input-group">
+                <input type="text" required name="nota" id="att_nota" placeholder="nota">
+                <input value='' type='hidden' id='id-Nota' >
+            </div>
+
+            <button id="login_button" onclick="updateNota()">
+                Atualizar
+            </button>
+        </div>
+        
+    </dialog>
+
+    <script src="{% static 'usuarios/javascript/turmas.js' %}"></script>
 
 {% endblock %}

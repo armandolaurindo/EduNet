@@ -10,6 +10,86 @@ function exibirForm(tipo){
         ver_lista_turma.style.display = "none";
     }
 }
+
+const openButtons = document.querySelectorAll('.open-modal')
+
+openButtons.forEach(button => {
+   button.addEventListener('click', () =>{
+      
+      const modaID = button.getAttribute('data-modal');
+      const modal = document.getElementById(modaID);
+      
+      modal.showModal();
+      
+   });
+});
+
+const closeButtons = document.querySelectorAll('.close-modal')
+
+closeButtons.forEach(button => {
+   button.addEventListener('click', () =>{
+     
+      const modaID = button.getAttribute('data-modal')
+      const modal = document.getElementById(modaID)
+
+      modal.close()
+
+   })
+})
+
+function attNota(notaID){
+    csrf_token = document.querySelector('[name=csrfmiddlewaretoken]').value
+    id_nota = notaID
+
+    data = new FormData()
+    data.append('id_nota', id_nota)
+
+    fetch("/atualizar_nota/",{
+        method: "POST",
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        body: data
+    }).then(function(result){
+        return result.json()
+    }).then(function(data){
+        inputNota = document.getElementById('att_nota')
+        inputNota.value = data['nota']['nota']
+
+        id = document.getElementById('id-Nota')
+        id.value = id_nota
+
+    })
+}
+
+function updateNota(){
+
+    valorNota = document.getElementById('att_nota').value
+    nota_id = document.getElementById('id-Nota').value
+
+    fetch('/update_nota/' + nota_id,{
+
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': csrf_token,
+        },
+        body: JSON.stringify({
+            nota: valorNota,
+        })
+
+    }).then(function(result){
+       return result.json()
+    }).then(function(data){
+        console.log(data)
+        if(data['status'] == '200'){
+            nota = data['nota']
+            alert('Nota alterada com sucesso')
+        }else{
+            alert('Ocorreu algum erro no processo')
+        }
+    })
+
+}
 /*
 function dados_aluno(){
 
